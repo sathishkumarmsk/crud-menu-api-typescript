@@ -18,8 +18,8 @@ itemsRouter.get("/", async (req: Request, res: Response) => {
       const items: Item[] = await ItemService.findAll();
   
       res.status(200).send(items);
-    } catch (e) {
-      res.status(500).send(e.message);
+    } catch (error: any) {
+      res.status(500).send(error.message);
     }
   });
 // GET items/:id
@@ -34,8 +34,8 @@ itemsRouter.get("/:id", async (req: Request, res: Response) => {
       }
   
       res.status(404).send("item not found");
-    } catch (e) {
-      res.status(500).send(e.message);
+    } catch (error: any) {
+      res.status(500).send(error.message);
     }
   });
 // POST items
@@ -46,8 +46,8 @@ itemsRouter.post("/", async (req: Request, res: Response) => {
       const newItem = await ItemService.create(item);
   
       res.status(201).json(newItem);
-    } catch (e) {
-      res.status(500).send(e.message);
+    } catch (error: any) {
+      res.status(500).send(error.message);
     }
   });
 // PUT items/:id
@@ -67,8 +67,8 @@ itemsRouter.put("/:id", async (req: Request, res: Response) => {
       const newItem = await ItemService.create(itemUpdate);
   
       res.status(201).json(newItem);
-    } catch (e) {
-      res.status(500).send(e.message);
+    } catch (error: any) {
+      res.status(500).send(error.message);
     }
   });
   
@@ -79,8 +79,7 @@ itemsRouter.delete("/:id", async (req: Request, res: Response) => {
       await ItemService.remove(id);
   
       res.sendStatus(204);
-    } catch (e) {
-      res.status(500).send(e.message);
+    } catch (error: any) {
+      res.status(500).send(error.message);
     }
   });
-  
